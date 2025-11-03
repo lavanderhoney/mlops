@@ -1,0 +1,30 @@
+pipeline{
+    agent{
+        node{
+            label 'local'
+            customWorkspace 'C:\\Users\\MISAREE\\Desktop\\Semester 7\\MLOps\\Practical\\Jenkins_Prac'
+        }
+    }
+    stages{
+        stage('Show Files in Workspace'){
+            steps{
+                bat 'dir'  // This will show all files in the directory
+            }
+        }
+        stage('Show Workspace'){
+            steps{
+                bat 'cd'
+            }
+        }
+        stage('Build Images'){
+            steps{
+                bat 'docker-compose build'
+            }
+        }
+        stage('Deploy containers'){
+            steps{
+                bat 'docker-compose up -d'
+            }
+        }
+    }
+}
